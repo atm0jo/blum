@@ -617,6 +617,7 @@ while True:
         sys.stdout.write("\rWaktu claim berikutnya telah tiba!                                                          \n")
     except KeyboardInterrupt:
         print(f"\n{Fore.RED+Style.BRIGHT}Proses dihentikan paksa oleh anda!")
+        break
  
     except Exception as e:
             print(f"An error occurred: {str(e)}")
