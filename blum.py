@@ -13,25 +13,21 @@ init(autoreset=True)
 
 start_time = datetime.datetime.now()  # Tentukan waktu mulai saat bot dijalankan
 
+import argparse
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Blum BOT')
-    parser.add_argument('--task', type=str, choices=['y', 'n'], help='Cek and Claim Task (y/n)')
-    parser.add_argument('--reff', type=str, choices=['y', 'n'], help='Apakah ingin claim ref? (y/n, default n)')
+    parser.add_argument('--task', type=str, choices=['y', 'n'], default='n', help='Cek and Claim Task (y/n, default n)')
+    parser.add_argument('--reff', type=str, choices=['y', 'n'], default='n', help='Apakah ingin claim ref? (y/n, default n)')
     args = parser.parse_args()
-
-    if args.task is None:
-        # Jika parameter --task tidak diberikan, minta input dari pengguna
-        task_input = input("Apakah Anda ingin cek dan claim task? (y/n, default n): ").strip().lower()
-        # Jika pengguna hanya menekan enter, gunakan 'n' sebagai default
-        args.task = task_input if task_input in ['y', 'n'] else 'n'
-
-    if args.reff is None:
-        # Jika parameter --claim_ref tidak diberikan, minta input dari pengguna
-        reff_input = input("Apakah ingin claim ref? (y/n, default n): ").strip().lower()
-        # Jika pengguna hanya menekan enter, gunakan 'n' sebagai default
-        args.reff = reff_input if reff_input in ['y', 'n'] else 'n'
-
+    
     return args
+
+# Untuk melihat hasil parsing argumen
+if __name__ == "__main__":
+    args = parse_arguments()
+    print(f"Task: {args.task}")
+    print(f"Reff: {args.reff}")
 
 def check_tasks(token):
     headers = {
